@@ -1,7 +1,7 @@
 module.exports = {
     entry: {
      app: "./app/main.ts",
-     shims: ['es6-shim', 'angular2/bundles/angular2-polyfills.js']
+     shims: ['es6-shim', 'angular2/bundles/angular2-polyfills.js', 'angular2/bundles/router.dev.js']
     },
     output: {
         path: __dirname,
