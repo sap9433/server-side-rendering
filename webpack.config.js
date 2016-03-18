@@ -2,9 +2,9 @@ module.exports = {
     entry: {
      app: "./app/main.ts",
      shims: ['angular2/bundles/angular2-polyfills.js'] 
-     // All required modules and shims like'es6-shim', 'es6-promise', 'reflect-metadata',
+     // All required dependencies like'es6-shim', 'es6-promise', 'reflect-metadata',
      // 'zone.js' etc are included in above bundle. So we can list them separately here
-     //  or use angular2-polyfills.js bundle;
+     //  or directly use angular2-polyfills.js bundle;
     },
     output: {
         path: __dirname,

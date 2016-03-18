@@ -17,6 +17,6 @@ import {Mission} from './mission.ts';
 })
 @RouteConfig([
  	{ path: '/mission', name: 'Mission', component: Mission },
- 	{ path: '/about-us', name: 'About', component: AboutUs }
+	{ path: '/about-us', name: 'About', component: AboutUs, useAsDefault: true }
 ])
 export class AppComponent { }
