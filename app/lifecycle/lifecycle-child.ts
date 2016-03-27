@@ -1,82 +1,34 @@
-import {
-  OnChanges, SimpleChange,
-  OnInit,
-  DoCheck,
-  AfterContentInit,
-  AfterContentChecked,
-  AfterViewInit,
-  AfterViewChecked,
-  OnDestroy
-} from 'angular2/core';
-import {Component, Input, Output} from 'angular2/core';
-import {LoggerService}            from './logger-service';
-
-let nextId = 1;
-
-export class PeekABoo implements OnInit {
-  constructor(private _logger: LoggerService) { }
-
-  // implement OnInit's `ngOnInit` method
-  ngOnInit() { this._logIt(`OnInit`); }
-
-  protected _logIt(msg: string) {
-    this._logger.log(`#${nextId++} ${msg}`);
-  }
-}
+import {Component, Input} from 'angular2/core';
 
 @Component({
-  selector: 'peek-a-boo',
-  template: '<p>Now you see my hero, {{name}}</p>',
-  styles: ['p {background: LightYellow; padding: 8px}']
+  selector: 'child-comp',
+  template: '<p>Time now, {{time}}</p>'
 })
 // Don't HAVE to mention the Lifecycle Hook interfaces
 // unless we want typing and tool support.
-export class PeekABooComponent extends PeekABoo implements
-  OnChanges, OnInit, DoCheck,
-  AfterContentInit, AfterContentChecked,
-  AfterViewInit, AfterViewChecked,
-  OnDestroy {
-  @Input() name: string;
+export class LifecycleChild  {
+  @Input() time: Date;
+  @Input() hooks;
 
-  private _verb = 'initialized';
-
-  constructor(logger: LoggerService) {
-    super(logger);
-
-    let is = this.name ? 'is' : 'is not';
-    this._logIt(`name ${is} known at construction`);
+  ngOnInit() { 
+    this.hooks.push(`OnInit`);
   }
 
   // only called for/if there is an @input variable set by parent.
-  ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
-    let changesMsgs: string[] = []
-    for (let propName in changes) {
-      if (propName === 'name') {
-        let name = changes['name'].currentValue;
-        changesMsgs.push(`name ${this._verb} to "${name}"`);
-      } else {
-        changesMsgs.push(propName + ' ' + this._verb);
-      }
-    }
-    this._logIt(`OnChanges: ${changesMsgs.join('; ')}`);
-    this._verb = 'changed'; // next time it will be a change
-  }
+  ngOnChanges(changes) {this.hooks.push(`OnChanges: ${Object.keys(changes)}`);}
 
-  // Beware! Called frequently!
   // Called in every change detection cycle anywhere on the page
-  ngDoCheck() { this._logIt(`DoCheck`); }
+  ngDoCheck() { this.hooks.push(`DoCheck : gets called frequently`); }
 
-  ngAfterContentInit() { this._logIt(`AfterContentInit`); }
+  ngAfterContentInit() { this.hooks.push(`AfterContentInit`); }
 
-  // Beware! Called frequently!
   // Called in every change detection cycle anywhere on the page
-  ngAfterContentChecked() { this._logIt(`AfterContentChecked`); }
+  ngAfterContentChecked() { this.hooks.push(`AfterContentChecked : gets called frequently`); }
 
-  ngAfterViewInit() { this._logIt(`AfterViewInit`); }
+  ngAfterViewInit() { this.hooks.push(`AfterViewInit`); }
 
-  // Beware! Called frequently!
   // Called in every change detection cycle anywhere on the page
-  ngAfterViewChecked() { this._logIt(`AfterViewChecked`); }
+  ngAfterViewChecked() { this.hooks.push(`AfterViewChecked : gets called frequently`); }
 
-  ngOnDestroy() { this._logIt(`OnDestroy`); }
+  ngOnDestroy() { this.hooks.push(`OnDestroy`); }
 }

@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {AboutUs} from './about-us';
 import {Mission} from './mission.ts';
-import {LifeCycle} from './lifeCycle/lifeCycle.ts';
+import {LifeCycle} from './lifecycle/lifecycle.ts';
 
 @Component({
     selector: 'my-app',

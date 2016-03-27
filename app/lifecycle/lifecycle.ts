@@ -1,51 +1,35 @@
-import {PeekABooComponent} from './lifecycle-child'
-import {LoggerService}  from './logger-service';
+import {LifecycleChild} from './lifecycle-child'
 import {Component} from 'angular2/core';
 @Component({
-	selector: 'peek-a-boo-parent',
 	template: `
-	  <div class="parent">
-	    <h2>Peek-A-Boo</h2>
-
+	  <div>
+	    <h2>Angular2 lifecycle hooks and their sequence</h2>
 	    <button (click)="toggleChild()">
-	      {{hasChild ? 'Destroy' : 'Create'}} PeekABooComponent
+	      {{hasChild ? 'Delete' : 'Create'}} Child
 	    </button>
-	    <button (click)="updateHero()" [hidden]="!hasChild">Update Hero</button>
-
-	    <peek-a-boo *ngIf="hasChild" [name]="heroName">
-	    </peek-a-boo>
-
-	    <h4>-- Lifecycle Hook Log --</h4>
-	    <div *ngFor="#msg of hookLog">{{msg}}</div>
+	    <button (click)="updateChild()" [hidden]="!hasChild">Update Child</button>
+	    <child-comp *ngIf="hasChild" [time]="time" [hooks]="hooks">
+	    </child-comp>
+	    <div *ngFor="#msg of hooks">{{msg}}</div>
 	  </div>
   	`,
-	styles: ['.parent {background: moccasin}'],
-	directives: [PeekABooComponent],
-	providers: [LoggerService]
+	directives: [LifecycleChild]
 })
 export class LifeCycle {
-	hasChild = false;
-	hookLog: string[];
-
-	heroName = 'Windstorm';
-	private _logger: LoggerService;
-
-	constructor(logger: LoggerService) {
-		this._logger = logger;
-		this.hookLog = logger.logs;
-	}
-
+	hasChild: boolean = false;
+	hooks: string[] = [];
+	time: Date = new Date();
+	
 	toggleChild() {
 		this.hasChild = !this.hasChild;
 		if (this.hasChild) {
-			this.heroName = 'Windstorm';
-			this._logger.clear(); // clear log on create
+			this.hooks = [];
 		}
-		this._logger.tick();
+		setTimeout(() => {}, 0);
 	}
 
-	updateHero() {
-		this.heroName += '!';
-		this._logger.tick();
+	updateChild() {
+		this.time = new Date();
+		setTimeout(() => { }, 0);
 	}
 }
