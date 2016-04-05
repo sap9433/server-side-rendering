@@ -2,20 +2,18 @@ import {Component, Input} from 'angular2/core';
 
 @Component({
   selector: 'child-comp',
-  template: '<p>Time now, {{time}}</p>'
+  template: '<h6>Lifecycle hooks and their sequence</h6>'
 })
-// Don't HAVE to mention the Lifecycle Hook interfaces
-// unless we want typing and tool support.
+// Don't HAVE to mention the Lifecycle Hook interfaces unless we want typing and tool support.
 export class LifecycleChild  {
-  @Input() time: Date;
   @Input() hooks;
 
-  ngOnInit() { 
-    this.hooks.push(`OnInit`);
-  }
+  ngOnInit() { this.hooks.push(`OnInit`); }
 
   // only called for/if there is an @input variable set by parent.
-  ngOnChanges(changes) {this.hooks.push(`OnChanges: ${Object.keys(changes)}`);}
+  ngOnChanges(changes) {
+    console.log(2);
+   this.hooks.push(`OnChanges: ${Object.keys(changes)}`); }
 
   // Called in every change detection cycle anywhere on the page
   ngDoCheck() { this.hooks.push(`DoCheck : gets called frequently`); }
@@ -30,5 +28,5 @@ export class LifecycleChild  {
   // Called in every change detection cycle anywhere on the page
   ngAfterViewChecked() { this.hooks.push(`AfterViewChecked : gets called frequently`); }
 
-  ngOnDestroy() { this.hooks.push(`OnDestroy`); }
+  ngOnDestroy() { console.log(this.hooks); this.hooks.push(`OnDestroy`); }
 }
