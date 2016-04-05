@@ -10,23 +10,21 @@ export class LifecycleChild  {
 
   ngOnInit() { this.hooks.push(`OnInit`); }
 
-  // only called for/if there is an @input variable set by parent.
-  ngOnChanges(changes) {
-    console.log(2);
-   this.hooks.push(`OnChanges: ${Object.keys(changes)}`); }
+  // only called if there is an @input variable set by parent.
+  ngOnChanges(changes) { this.hooks.push(`OnChanges: ${Object.keys(changes)}`); }
 
   // Called in every change detection cycle anywhere on the page
-  ngDoCheck() { this.hooks.push(`DoCheck : gets called frequently`); }
+  ngDoCheck() { this.hooks.push(`DoCheck`); }
 
   ngAfterContentInit() { this.hooks.push(`AfterContentInit`); }
 
   // Called in every change detection cycle anywhere on the page
-  ngAfterContentChecked() { this.hooks.push(`AfterContentChecked : gets called frequently`); }
+  ngAfterContentChecked() { this.hooks.push(`AfterContentChecked`); }
 
   ngAfterViewInit() { this.hooks.push(`AfterViewInit`); }
 
   // Called in every change detection cycle anywhere on the page
-  ngAfterViewChecked() { this.hooks.push(`AfterViewChecked : gets called frequently`); }
+  ngAfterViewChecked() { this.hooks.push(`AfterViewChecked`); }
 
-  ngOnDestroy() { console.log(this.hooks); this.hooks.push(`OnDestroy`); }
+  ngOnDestroy() { this.hooks.push(`OnDestroy`); }
 }
