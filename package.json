@@ -2,7 +2,7 @@
   "name": "Angular2-starter-kit",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack && webpack-dev-server --inline --progress --port 9876",
+    "start": "webpack && webpack-dev-server --port 9876",
     "typings": "typings",
     "postinstall": "typings install"
   },
@@ -23,6 +23,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sap9433/angular2-webpack-starter-kit.git"
+    "url": "git+https://github.com/Ng2book/angular2-webpack-starter-kit.git"
   }
 }
