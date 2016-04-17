@@ -1,12 +1,13 @@
 import {Component} from 'angular2/core';
 import {GreetService} from './greet.service.ts';
+import { MsgService} from './msg.service.ts';
 
 @Component({
 	template: `
     <h2>Service And DI</h2>
     {{message}}
     `,
-    providers: [GreetService]
+    providers: [GreetService, MsgService]
 })
 export class GreetUser {
 	message: String;
