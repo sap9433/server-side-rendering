@@ -4,6 +4,8 @@ import {AboutUs} from './about-us';
 import {Mission} from './mission.ts';
 import {LifeCycle} from './lifecycle/lifecycle.ts';
 import {GreetUser} from './ServiceDI/greet-user.ts';
+import {HttpClient} from './httpClient/client.ts';
+
 
 @Component({
     selector: 'my-app',
@@ -14,6 +16,7 @@ import {GreetUser} from './ServiceDI/greet-user.ts';
 	    <a [routerLink]="['About']">About Us</a>
 	    <a [routerLink]="['LifeCycle']">Life Cycle Hooks</a>
 	    <a [routerLink]="['GreetUser']">Service and DI</a>
+	    <a [routerLink]="['HttpClient']">Http Client</a>
 	   </nav>
 	   <router-outlet></router-outlet>
     `,
@@ -23,6 +26,7 @@ import {GreetUser} from './ServiceDI/greet-user.ts';
  	{ path: '/mission', name: 'Mission', component: Mission },
 	{ path: '/about-us', name: 'About', component: AboutUs, useAsDefault: true },
 	{ path: '/lifecycle', name: 'LifeCycle', component: LifeCycle },
-	{ path: '/dependency-injection', name: 'GreetUser', component: GreetUser }
+	{ path: '/dependency-injection', name: 'GreetUser', component: GreetUser },
+	{ path: '/httpClient', name: 'HttpClient', component: HttpClient }
 ])
 export class AppComponent { }

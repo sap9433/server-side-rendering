@@ -10,7 +10,7 @@ import {Component} from 'angular2/core';
 	    <button (click)="updateChild()" [hidden]="!hasChild">Update Child</button>
 	    <child-comp *ngIf="hasChild" [hooks]="hooks">
 	    </child-comp>
-	    <p *ngFor="#log of hooks; #i = index"> #{{i+1}} - {{log}}</p>
+	    <p *ngFor="let log of hooks; let i = index"> #{{i+1}} - {{log}}</p>
 	  </div>
   	`,
 	directives: [LifecycleChild]
