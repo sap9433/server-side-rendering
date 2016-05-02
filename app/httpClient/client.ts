@@ -12,7 +12,7 @@ import {DataService} from './dataService.ts';
 export class HttpClient { 
 	constructor(private _dataService: DataService) { }
 	errorMessage: string;
-	data: any;
+	data: any[];
 	ngOnInit() { this.fetchData(); }
 	fetchData() {
 		this._dataService.getData()
