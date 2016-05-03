@@ -5,6 +5,8 @@ import {Mission} from './mission.ts';
 import {LifeCycle} from './lifecycle/lifecycle.ts';
 import {GreetUser} from './ServiceDI/greet-user.ts';
 import {HttpClient} from './httpClient/client.ts';
+import {ObservableExample} from './httpClient/observableExample.ts';
+
 
 
 @Component({
@@ -16,6 +18,7 @@ import {HttpClient} from './httpClient/client.ts';
 	    <a [routerLink]="['About']">About Us</a>
 	    <a [routerLink]="['LifeCycle']">Life Cycle Hooks</a>
 	    <a [routerLink]="['GreetUser']">Service and DI</a>
+	    <a [routerLink]="['ObservableExample']">Observable Example</a>
 	    <a [routerLink]="['HttpClient']">Http Client</a>
 	   </nav>
 	   <router-outlet></router-outlet>
@@ -27,6 +30,7 @@ import {HttpClient} from './httpClient/client.ts';
 	{ path: '/about-us', name: 'About', component: AboutUs, useAsDefault: true },
 	{ path: '/lifecycle', name: 'LifeCycle', component: LifeCycle },
 	{ path: '/dependency-injection', name: 'GreetUser', component: GreetUser },
-	{ path: '/httpClient', name: 'HttpClient', component: HttpClient }
+	{ path: '/httpClient', name: 'HttpClient', component: HttpClient },
+	{ path: '/observable', name: 'ObservableExample', component: ObservableExample }
 ])
 export class AppComponent { }
