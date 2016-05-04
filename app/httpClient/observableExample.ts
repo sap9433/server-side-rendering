@@ -17,7 +17,7 @@ export class ObservableExample {
 	}
 
 	implementPromise() {
-		let promise = new Promise((resolve) => {
+		let promise = new Promise<String>((resolve) => {
 			setTimeout(() => resolve('Promise works.') , 1000);
 		});
 		promise.then((res: String) => this.promiseOutput = res);
