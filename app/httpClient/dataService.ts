@@ -8,11 +8,12 @@ export class DataService {
 
   private _url = 'https://api.github.com/users/Ng2book/repos';
 
-  getData(): Rx.Observable<any[]> {
+  getData(): Rx.Observable<any[]>{
     return this.http.get(this._url)
       .map(
-        res => res.json(), 
-        err => Rx.Observable.throw(err.message)
-      );
+        res => res.json()
+      ).catch(
+      	err => Rx.Observable.throw(err.json().message) 
+    );
   }
 }
