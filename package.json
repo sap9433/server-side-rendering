@@ -2,7 +2,7 @@
   "name": "Angular2-starter-kit",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack && webpack-dev-server --port 9876",
+    "start": "webpack && node server.js",
     "typings": "typings",
     "postinstall": "typings install"
   },
@@ -15,6 +15,7 @@
     "zone.js": "^0.6.6"
   },
   "devDependencies": {
+    "express-http-proxy": "^0.6.0",
     "ts-loader": "^0.8.1",
     "typescript": "^1.8.2",
     "typings": "^0.7.9",
