@@ -17,5 +17,16 @@ module.exports = {
             { test: /\.ts?$/, loader: 'ts-loader' }
         ]
     },
-    devtool: "#cheap-source-map"
+    devtool: "#cheap-source-map",
+    devServer: {
+        proxy: {
+          '/ajax/*': {
+                target: 'http://ergast.com',
+                secure: false,
+                rewrite: function(req) {
+                    req.url = req.url.replace(/ajax\//, '');
+                }
+            }
+        }
+    }
 };

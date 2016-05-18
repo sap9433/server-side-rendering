@@ -6,7 +6,7 @@ import * as Rx from 'rxjs/Rx';
 export class DataService {
   constructor(private http: Http) { }
 
-  private _url = 'https://api.github.com/users/Ng2book/repos';
+  private _url = '/ajax/api/f1/2016/1/results.json';
 
   getData(): Rx.Observable<any[]>{
     return this.http.get(this._url)
