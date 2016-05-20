@@ -5,4 +5,7 @@ body{
 
 a{
 	text-decoration: none;
+    padding: 0 10px 0 10px;
+    border-right: 1px solid #BDB7B7;
+    color: #BCBCE0;
 }
