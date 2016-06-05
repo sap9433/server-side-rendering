@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {GreetService} from './greet.service.ts';
 import { MsgService} from './msg.service.ts';
 
