@@ -1,7 +1,7 @@
-import {bootstrap} from '@angular/platform-browser/browser';
+import {bootstrap, BROWSER_ROUTER_PROVIDERS, BROWSER_HTTP_PROVIDERS} from 'angular2-universal';
 import {AppComponent} from './app.component'
-import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
 bootstrap(AppComponent, [
-	ROUTER_PROVIDERS
+	...BROWSER_ROUTER_PROVIDERS,
+	...BROWSER_HTTP_PROVIDERS
 ]);
