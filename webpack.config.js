@@ -9,31 +9,42 @@ var commonConfig = {
     loaders: [
       // TypeScript
       { test: /\.ts$/, loader: 'ts-loader' },
-      { test: /\.css$/, loader: "style!css" }
+      { test: /\.css$/, loader: "style!css" },
+      { test:  /\.json$/, loader: 'json-loader' }
     ]
   },
-  output: {
-        path: __dirname,
-        filename: "./dist/[name].js",
-        sourceMapFilename: "./dist/[name].map"
-  },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(true)
-  ]
+  // output: {
+  //       path: __dirname,
+  //       filename: "./dist/[name].js",
+  //       sourceMapFilename: "./dist/[name].map"
+  // },
+  // plugins: [
+  //   new webpack.optimize.OccurenceOrderPlugin(true)
+  // ]
 };
 
 
 var clientConfig = {
   target: 'web',
-  entry: './app/main'
+  entry: ['./app/main'],
+    output: {
+        path: __dirname,
+        filename: "./dist/client.js",
+        sourceMapFilename: "./dist/client.map"
+  },
 };
 
 
 var serverConfig = {
   target: 'node',
-  entry: './app/appcomponent'
+  entry: ['./server'],
   // externals: checkNodeImport,
   // path: __dirname
+    output: {
+        path: __dirname,
+        filename: "./dist/server.js",
+        sourceMapFilename: "./dist/server.map"
+  }
 };
 
 
@@ -42,7 +53,7 @@ var serverConfig = {
 var defaultConfig = {
   module: {
     noParse: [
-      path.join(__dirname, 'zone.js', 'dist'),
+      path.join(__dirname, 'zone.js','dist'),
       path.join(__dirname, 'angular2', 'bundles')
     ]
   },
@@ -54,7 +65,7 @@ var defaultConfig = {
 var webpackMerge = require('webpack-merge');
 module.exports = [
   // Client
-  //webpackMerge({}, defaultConfig, commonConfig, clientConfig),
+  webpackMerge({}, defaultConfig, commonConfig, clientConfig),
 
   // Server
   webpackMerge({}, defaultConfig, commonConfig, serverConfig)
@@ -67,25 +78,3 @@ function checkNodeImport(context, request, cb) {
   }
   cb();
 }
-
-// module.exports = {
-//     entry: {
-//      app: "./app/main.ts",
-//      shims: ['es6-shim', 'reflect-metadata', 'rxjs', 'zone.js'] 
-//     },
-//     output: {
-//         path: __dirname,
-//         filename: "./dist/[name].js",
-//         sourceMapFilename: "./dist/[name].map"
-//     },
-//     resolve: {
-//         extensions: ['', '.js', '.ts']
-//     },
-//     module: {
-//         loaders: [
-//             { test: /\.css$/, loader: "style!css" },
-//             { test: /\.ts?$/, loader: 'ts-loader' }
-//         ]
-//     },
-//     devtool: "#cheap-source-map"
-// };
