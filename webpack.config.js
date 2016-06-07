@@ -45,8 +45,8 @@ var clientConfig = {
 var serverConfig = {
   target: 'node',
   entry: ['./server'],
-  // externals: checkNodeImport,
-  // path: __dirname
+  externals: checkNodeImport,
+  path: __dirname,
     output: {
         path: __dirname,
         filename: "./dist/server.js",
