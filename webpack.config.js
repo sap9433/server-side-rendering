@@ -32,6 +32,13 @@ var clientConfig = {
         filename: "./dist/client.js",
         sourceMapFilename: "./dist/client.map"
   },
+   node: {
+    global: true,
+    __dirname: true,
+    __filename: true,
+    process: true,
+    Buffer: false
+  }
 };
 
 
@@ -44,6 +51,14 @@ var serverConfig = {
         path: __dirname,
         filename: "./dist/server.js",
         sourceMapFilename: "./dist/server.map"
+  },
+  externals: checkNodeImport,
+  node: {
+    global: true,
+    __dirname: true,
+    __filename: true,
+    process: true,
+    Buffer: true
   }
 };
 

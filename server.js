@@ -27,9 +27,11 @@ const App = require('./app/appcomponent.ts');
 
 // Build the app server
 const app = express();
-app.use(bodyParser.json());
 
 app.use(bodyParser.json());
+app.engine('.html', expressEngine);
+app.set('views', __dirname);
+app.set('view engine', 'html');
 
 const ROOT = path.join(path.resolve(__dirname, '..'));
 
@@ -58,10 +60,16 @@ function ngApp(req, res) {
   res.render('index', config);
 }
 
-app.use('/', ngApp);
-
 // Serve static files
 app.use(express.static(ROOT, {index: false}));
+
+function indexFile(req, res) {
+  res.sendFile('/index.html', {root: __dirname});
+}
+
+app.use('/', ngApp);
+app.use('/about', ngApp);
+app.use('/mission', ngApp);
 
 
 
