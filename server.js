@@ -22,7 +22,7 @@ const webpackMiddleWare = require('webpack-dev-middleware');
 
 // Angular 2 Universal
 
-const App = require('./app/appcomponent.ts');
+const App = require('./app/appcomponent.ts').AppComponent;
 
 
 // Build the app server
